@@ -11,6 +11,8 @@ void shell_loop(void)
 	do {
 		_puts("$ ");
 		line = shell_read();
+		if (line == NULL)
+			return;
 		_puts(line);
 		free(line);
 	} while (1);

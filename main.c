@@ -8,5 +8,5 @@ int main(void)
 {
 	shell_loop();
 
-	return (EXIT_SUCCESS);
+	return (0);
 }
