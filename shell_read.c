@@ -8,8 +8,8 @@
 char *shell_read(void)
 {
 	char *line = NULL;
-	size_t size = 0;
+	size_t sz = 0;
 
-	getline(&line, &size, STDIN_FILENO);
+	getline(&line, &sz, stdin);
 	return (line);
 }
