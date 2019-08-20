@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  * shell_loop - wait for a string a process it.
  *
@@ -9,7 +10,7 @@ void shell_loop(void)
 
 	do {
 		_puts("$ ");
-		line = shell_read(void);
+		line = shell_read();
 		_puts(line);
 		free(line);
 	} while (1);
