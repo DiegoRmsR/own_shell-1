@@ -5,7 +5,7 @@ char **shell_token(char *line)
 	int bfsz = BUF_SZ_TOK, obfsz = 0;
 	int pos = 0;
 	char **grid;
-	char *delim = " \t\n,.:";
+	char *delim = " \t\n";
 
 	grid = malloc(bfsz * sizeof(char*));
 	if (!grid)
