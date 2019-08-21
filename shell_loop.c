@@ -6,14 +6,16 @@
  */
 void shell_loop(void)
 {
-	char *line;
+	char *line, **grid;
 
 	do {
 		_puts("$ ");
 		line = shell_read();
 		if (line == NULL)
 			return;
-		_puts(line);
+		grid = shell_token(line);
+		_puts_grid(grid);
 		free(line);
+		free(grid);
 	} while (1);
 }
