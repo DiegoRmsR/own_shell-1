@@ -6,7 +6,8 @@
  */
 void shell_loop(void)
 {
-	char *line, **grid;
+	char *line;
+	char **grid;
 
 	do {
 		_puts("$ ");
@@ -14,7 +15,7 @@ void shell_loop(void)
 		if (line == NULL)
 			return;
 		grid = shell_token(line);
-		_puts_grid(grid);
+		shell_execute(grid);
 		free(line);
 		free(grid);
 	} while (1);

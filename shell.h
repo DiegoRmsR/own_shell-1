@@ -19,4 +19,8 @@ char *shell_read(void);
 char **shell_token(char *line);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void _puts_grid(char **grid);
+void shell_execute(char *argv[]);
+int main (__attribute__((unused))int argc, __attribute__((unused))char **env, char **argv);
+char *_strcat(char *str1, char *srt2);
+int _strlen(char *str);
 #endif

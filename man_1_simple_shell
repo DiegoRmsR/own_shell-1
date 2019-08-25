@@ -1,0 +1,51 @@
+.TH hsh 1 "August 25, 2019" "1.0" "hsh General Commands Manual"
+
+.SH NAME
+
+.B simple_shell
+- command line interpreter of shell
+
+
+.SH SYNOPSIS
+
+.B  ./hsh
+.I [command]
+
+.SH DESCRIPTION
+
+.B simple_shell
+- is a simple replica of the standard command interpreter shell, written by Ken Thompson in 1971. simple_shell is desgined to run on the linux environment.
+
+.SH OVERVIEW
+
+The simple shell is a program that reads lines from the terminal and executes commands.
+
+.SH EXAMPLE
+.PP
+.BR $
+.PP
+.BR $ ls
+.PP
+.BR $ l
+
+.SH BUILTINS
+
+This section lists the builtin commands:
+
+.B env
+\- Prints the environment variables to stdout
+
+.B exit
+\- Terminate the shell process
+
+.SH BUGS
+No known bugs, if you find a bug contact 836@holbertonschool.com or @holbertonschool.com.
+
+.SH SEE ALSO
+man sh
+
+.SH AUTHOR
+
+Diego Ramos <DiegoRamos.mt@gmail.com.com>
+
+Emma Gachancipa <johnpcottrell@gmail.com>
