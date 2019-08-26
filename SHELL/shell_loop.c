@@ -6,16 +6,16 @@
  */
 void shell_loop(void)
 {
-	char *line, **grid;
+	char *line, *delim, **grid;
+	int status;
 
+	delim = " \t\r\a\n";
 	do {
 		_puts("$ ");
 		line = shell_read();
-		if (line == NULL)
-			return;
-		grid = shell_token(line);
-		_puts_grid(grid);
+		grid = shell_token(line, delim);
+		status = shell_execute(grid);
 		free(line);
 		free(grid);
-	} while (1);
+	} while(status);
 }

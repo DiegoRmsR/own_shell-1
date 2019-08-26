@@ -1,9 +1,8 @@
 #include "shell.h"
 /**
+ * shell_read - get the line
  *
- *
- *
- *
+ * Return: the line
  */
 char *shell_read(void)
 {
@@ -15,7 +14,8 @@ char *shell_read(void)
 	if (flag == -1)
 	{
 		free(line);
-		return (NULL);
+		exit(1);
 	}
+	line[flag] = '\0';
 	return (line);
 }

@@ -1,13 +1,17 @@
 #include "shell.h"
-
-char **shell_token(char *line)
+/**
+ * shell_token - token. a line
+ * @line: string
+ * Return: grid with the tokens.
+ */
+char **shell_token(char *line, char *delim)
 {
-	int bfsz = BUF_SZ_TOK, obfsz = 0;
+	int bfsz = BUF_SZ, obfsz = 0;
 	int pos = 0;
 	char **grid;
-	char *delim = " \t\n";
 
 	grid = malloc(bfsz * sizeof(char*));
+
 	if (!grid)
 	{
 		_puts("alloc. error");
@@ -23,7 +27,7 @@ char **shell_token(char *line)
 		if (pos >= bfsz)
 		{
 			obfsz = bfsz;
-			bfsz += BUF_SZ_TOK;
+			bfsz += BUF_SZ;
 			grid = _realloc(grid, obfsz, bfsz);
 			if (!grid)
 			{
