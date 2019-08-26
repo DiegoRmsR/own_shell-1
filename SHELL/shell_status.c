@@ -12,12 +12,8 @@ int shell_status(char **grid, char **path_dir)
 		return (1);
 	/*builtins*/
 	/*PATH commands*/
-	if (grid[0][0] != '/')
-	{
-		shell_path(grid, path_dir);
-		return (1);
-	}
+	if ((grid[0][0] != '/')&&(shell_path(grid, path_dir)))
+	    return (1);
 	/*exe commands or no valid*/
-	else
-		return (shell_process(grid));
+	return (shell_process(grid));
 }

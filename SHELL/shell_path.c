@@ -85,7 +85,7 @@ int shell_path(char **grid, char **path_dir)
 		full_file = file_match(grid[0], path_dir[i]);
 		if (full_file)
 		{
-			filters = grid_cpy(full_file, grid);
+			new_grid = grid_cpy(full_file, grid);
 			path_exe(new_grid);
 			return (1);
 		}
