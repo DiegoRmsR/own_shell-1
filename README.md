@@ -10,10 +10,7 @@ Unix shell is a command-line interpreter or shell written by Ken Thompson in 197
  *
  *
  *
-## Advanced Tasks
- *
- *
- *
+
 ## Files
 File | Description
 --- | ---
@@ -26,7 +23,11 @@ File | Description
 
 ## Installation
    - Clone this repository: `git clone "https://github.com/julgachancipa/simple_shell.git"`
-   - Compile: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
+   
+## Compile
+   - `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
+   
+## Execute
    - Run the shell in interactive mode: `./hsh`
    - Or run the shell in non-interactive mode: `echo "pwd" | ./hsh`
 
@@ -62,8 +63,10 @@ drwxrwxr-x 8 vagrant vagrant 4.0K Aug 25 06:27 .git
 -rw-rw-r-- 1 vagrant vagrant  199 Aug 25 01:18 _strlen.c
 ```
 ---
+
 ## Bugs
 There are no known bugs.
+
 ## Authors
 [Diego Ramos](https://github.com/DiegoRmsR) | [@Imdiegoramoss](https://twitter.com/Imdiegoramoss)
 
