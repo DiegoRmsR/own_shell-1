@@ -1,6 +1,7 @@
 #include "shell.h"
 /**
  * grid_cpy - creates a cpy of a grid
+ * @full_file: dir + file
  * @grid: grid
  * Return: new grid
  */
@@ -9,21 +10,20 @@ char **grid_cpy(char *full_file, char **grid)
 	int i;
 	char **filters;
 
-	filters = malloc(BUF_SZ * sizeof(char*));
+	filters = malloc(BUF_SZ * sizeof(char *));
 	filters[0] = full_file;
 	for (i = 1; grid[i]; i++)
 	{
 		filters[i] = grid[i];
 	}
-	return(filters);
+	return (filters);
 }
 /**
  * path_exe - create a child process and wait until it ends.
- * @full_file: full file name
- * @grid: pointer to tokens
+ * @new_grid: grid with the new [0] parameter
  * Return: 1 on success or exit in errors
  */
-int path_exe(char **filters)
+int path_exe(char **new_grid)
 {
 	int status = 1;
 	pid_t child;
@@ -35,7 +35,7 @@ int path_exe(char **filters)
 	}
 	else if (child == 0)
 	{
-		if (execve(filters[0], filters, NULL) == -1)
+		if (execve(new_grid[0], new_grid, NULL) == -1)
 		{
 			_puts("\ash: ERROR\n");
 			exit(0);
@@ -64,35 +64,31 @@ char *file_match(char *file, char *dir)
 	_strcat(tmp, "/");
 	_strcat(tmp, file);
 	if (stat(tmp, &st) == 0)
-		return(tmp);
+		return (tmp);
 	return (NULL);
 }
 /**
  * shell_path - look if the token is a file in the path dir.
- * @file: file's name
+ * @grid: tokenized line.
+ * @path_dir: PATH dirs.
  * Return: 1 success or 0 if not
  */
 int shell_path(char **grid, char **path_dir)
 {
 	char *full_file;
-	char **filters;
+	char **new_grid;
 	int i;
 
 	/*find the file in the directory*/
 	for (i = 0; path_dir[i]; i++)
 	{
-		if ((full_file = file_match(grid[0], path_dir[i])))
+		full_file = file_match(grid[0], path_dir[i]);
+		if (full_file)
 		{
 			filters = grid_cpy(full_file, grid);
-			path_exe(filters);
-			/*free(filters);
-			  free(full_file);
-			  free(dir);
-			  free(path_con);*/
+			path_exe(new_grid);
 			return (1);
 		}
-	}/*
-	   free(path_con);
-	   free(full_file);*/
-	return(0);
+	}
+	return (0);
 }

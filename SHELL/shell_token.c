@@ -2,6 +2,7 @@
 /**
  * shell_token - token. a line
  * @line: string
+ * @delim: delim string
  * Return: grid with the tokens.
  */
 char **shell_token(char *line, char *delim)
@@ -10,14 +11,14 @@ char **shell_token(char *line, char *delim)
 	int pos = 0;
 	char **grid;
 
-	grid = malloc(bfsz * sizeof(char*));
+	grid = malloc(bfsz * sizeof(char *));
 
 	if (!grid)
 	{
 		_puts("alloc. error");
 		exit(EXIT_FAILURE);
 	}
-        grid[pos] = strtok(line, delim);
+	grid[pos] = strtok(line, delim);
 	pos++;
 	while (1)
 	{

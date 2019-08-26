@@ -2,17 +2,15 @@
 /**
  * shell_status - determines if the tokens are executable or not.
  * @grid: pointer of tokens
+ * @path_dir: grid of dirs in the path
  * Return: status
  */
-int shell_status(char **grid,char **path_dir)
+int shell_status(char **grid, char **path_dir)
 {
-	/*int i;*/
-
 	/*Nothing comming*/
 	if (grid[0] == NULL)
 		return (1);
 	/*builtins*/
-	
 	/*PATH commands*/
 	if (grid[0][0] != '/')
 	{

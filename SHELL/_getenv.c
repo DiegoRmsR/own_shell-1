@@ -1,4 +1,9 @@
 #include "shell.h"
+/**
+ * var_name - find the var name in the i pos.
+ * @var: variable in the i pos.
+ * Return: the name of the var.
+ */
 char *var_name(char *var)
 {
 	int i;
@@ -15,6 +20,12 @@ char *var_name(char *var)
 	v_name[i] = '\0';
 	return (v_name);
 }
+/**
+ * _strmatch - looks if the var exists
+ * @name: var to find
+ * @var: var name in the i pos.
+ * Return: 1 on success or 0
+ */
 int _strmatch(const char *name, char *var)
 {
 	int i;
@@ -28,6 +39,11 @@ int _strmatch(const char *name, char *var)
 		return (0);
 	return (1);
 }
+/**
+ * var_con - returns the content of a var
+ * @var: var string
+ * Return: content
+ */
 char *var_con(char *var)
 {
 	int i;
@@ -37,9 +53,10 @@ char *var_con(char *var)
 	return (var + i + 1);
 }
 /**
- * _getenv - 
- *
- *
+ * _getenv - get the content of an env. var.
+ * @env: grid of env. vars.
+ * @name: var. name
+ * Return: the content or NULL
  */
 char *_getenv(char **env, const char *name)
 {

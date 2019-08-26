@@ -1,12 +1,12 @@
 #include "shell.h"
 /**
  * shell_loop - wait for a string a process it.
- *
+ * @env: enviroment vars.
  * Return: nothing
  */
 void shell_loop(char **env)
 {
-	char *line, *delim, *path_con, **grid ,**path_dir;
+	char *line, *delim, *path_con, **grid, **path_dir;
 	int status;
 
 	/*get the path content*/
@@ -22,5 +22,5 @@ void shell_loop(char **env)
 		status = shell_status(grid, path_dir);
 		free(line);
 		free(grid);
-	} while(status);
+	} while (status);
 }

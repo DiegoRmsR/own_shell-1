@@ -10,6 +10,6 @@ void puts_grid(char **grid)
 
 	for (i = 0; grid[i]; i++)
 	{
-		printf("%s\n",grid[i]);
+		_puts("%s\n", grid[i]);
 	}
 }
