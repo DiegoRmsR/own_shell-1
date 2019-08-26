@@ -66,4 +66,5 @@ drwxrwxr-x 8 vagrant vagrant 4.0K Aug 25 06:27 .git
 There are no known bugs.
 ## Authors
 [Diego Ramos](https://github.com/DiegoRmsR) | [@Imdiegoramoss](https://twitter.com/Imdiegoramoss)
+
 [Emma Gachancipa](https://github.com/julgachancipa) | [@julgachancipa](https://twitter.com/julgachancipa)
