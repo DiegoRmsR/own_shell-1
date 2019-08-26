@@ -13,7 +13,7 @@ char *var_name(char *var)
 	for (i = 0; var[i] != '='; i++)
 		v_name[i] = var[i];
 	v_name[i] = '\0';
-	return(v_name);
+	return (v_name);
 }
 int _strmatch(const char *name, char *var)
 {
@@ -36,19 +36,23 @@ char *var_con(char *var)
 		;
 	return (var + i + 1);
 }
-char *_getenv(const char *name)
+/**
+ * _getenv - 
+ *
+ *
+ */
+char *_getenv(char **env, const char *name)
 {
-	extern char **environ;
 	char *v_name;
 	int i;
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; env[i]; i++)
 	{
-		v_name = var_name(environ[i]);
+		v_name = var_name(env[i]);
 		if (_strmatch(name, v_name))
 		{
 			free(v_name);
-			return (var_con(environ[i]));
+			return (var_con(env[i]));
 		}
 		free(v_name);
 	}

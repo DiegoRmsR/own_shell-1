@@ -15,15 +15,15 @@
 void _puts(char *str);
 int _putchar(char c);
 void puts_grid(char **grid);
-void shell_loop(void);
+void shell_loop(char **env);
 char *shell_read(void);
 char **shell_token(char *line, char *delim);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void _puts_grid(char **grid);
 int shell_process(char **grid);
-int shell_execute(char **grid);
-char *_getenv(const char *name);
-int shell_path(char *file, char **grid);
+int shell_status(char **grid, char **path_dir);
+char *_getenv(char **env, const char *name);
+int shell_path(char **grid, char **path_dir);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 #endif

@@ -4,9 +4,12 @@
  *
  * Return: EXIT_SUCCESS
  */
-int main(void)
+int main(int ac, char **av, char **env)
 {
-	shell_loop();
+	(void)ac;
+	(void)av;
+
+	shell_loop(env);
 
 	return (0);
 }

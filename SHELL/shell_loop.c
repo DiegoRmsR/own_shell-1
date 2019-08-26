@@ -4,17 +4,22 @@
  *
  * Return: nothing
  */
-void shell_loop(void)
+void shell_loop(char **env)
 {
-	char *line, *delim, **grid;
+	char *line, *delim, *path_con, **grid ,**path_dir;
 	int status;
 
+	/*get the path content*/
+	path_con = _getenv(env, "PATH");
+	/*token. PATH*/
+	delim = ":";
+	path_dir = shell_token(path_con, delim);
 	delim = " \t\r\a\n";
 	do {
 		_puts("$ ");
 		line = shell_read();
 		grid = shell_token(line, delim);
-		status = shell_execute(grid);
+		status = shell_status(grid, path_dir);
 		free(line);
 		free(grid);
 	} while(status);

@@ -72,36 +72,27 @@ char *file_match(char *file, char *dir)
  * @file: file's name
  * Return: 1 success or 0 if not
  */
-int shell_path(char *file, char **grid)
+int shell_path(char **grid, char **path_dir)
 {
-	char *path_con;
-	char **dir;
-	char *delim;
 	char *full_file;
 	char **filters;
 	int i;
 
-	/*get the path content*/
-	path_con = _getenv("PATH");
-	/*token. PATH*/
-	delim = ":";
-	dir = shell_token(path_con, delim);
 	/*find the file in the directory*/
-	for (i = 0; dir[i]; i++)
+	for (i = 0; path_dir[i]; i++)
 	{
-		if ((full_file = file_match(file, dir[i])))
+		if ((full_file = file_match(grid[0], path_dir[i])))
 		{
 			filters = grid_cpy(full_file, grid);
 			path_exe(filters);
-			free(filters);
-			free(full_file);
-			free(dir);
-			free(path_con);
+			/*free(filters);
+			  free(full_file);
+			  free(dir);
+			  free(path_con);*/
 			return (1);
 		}
-	}
-	free(path_con);
-	free(full_file);
-	free(dir);
+	}/*
+	   free(path_con);
+	   free(full_file);*/
 	return(0);
 }
