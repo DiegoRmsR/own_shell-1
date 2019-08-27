@@ -7,7 +7,7 @@
  */
 char **shell_token(char *line, char *delim)
 {
-	int bfsz = BUF_SZ, obfsz = 0;
+	int bfsz = 10, obfsz = 0;
 	int pos = 0;
 	char **grid;
 
@@ -15,7 +15,7 @@ char **shell_token(char *line, char *delim)
 
 	if (!grid)
 	{
-		_puts("alloc. error");
+		_puts("lsh: allocation error");
 		exit(EXIT_FAILURE);
 	}
 	grid[pos] = strtok(line, delim);

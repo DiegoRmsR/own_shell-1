@@ -11,5 +11,6 @@ void puts_grid(char **grid)
 	for (i = 0; grid[i]; i++)
 	{
 		_puts(grid[i]);
+		_puts("\n");
 	}
 }

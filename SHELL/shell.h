@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 /*functions*/
+char *_strdup(char *str);
 void _puts(char *str);
 int _putchar(char c);
 void puts_grid(char **grid);

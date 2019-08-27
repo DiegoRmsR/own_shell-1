@@ -7,16 +7,23 @@
  */
 char **grid_cpy(char *full_file, char **grid)
 {
-	int i;
-	char **filters;
+	int i, j;
+	char **new_grid;
 
-	filters = malloc(BUF_SZ * sizeof(char *));
-	filters[0] = full_file;
+	for (j = 0; grid[j]; j++)
+		;
+	new_grid = malloc(j * sizeof(char *));
+	if (!new_grid)
+	{
+		_puts("lsh: allocation error");
+		exit(EXIT_FAILURE);
+	}
+	new_grid[0] = _strdup(full_file);
 	for (i = 1; grid[i]; i++)
 	{
-		filters[i] = grid[i];
+		new_grid[i] = _strdup(grid[i]);
 	}
-	return (filters);
+	return (new_grid);
 }
 /**
  * path_exe - create a child process and wait until it ends.
@@ -48,26 +55,6 @@ int path_exe(char **new_grid)
 	return (1);
 }
 /**
- * file_match - look if the token is a file in the path dir.
- * @file: file's name
- * @dir: grid of dir. in the PATH
- * Return: file with dir
- */
-char *file_match(char *file, char *dir)
-{
-	char *tmp;
-	struct stat st;
-	int bfsz = BUF_SZ;
-
-	tmp = malloc(bfsz * sizeof(char));
-	_strcpy(tmp, dir);
-	_strcat(tmp, "/");
-	_strcat(tmp, file);
-	if (stat(tmp, &st) == 0)
-		return (tmp);
-	return (NULL);
-}
-/**
  * shell_path - look if the token is a file in the path dir.
  * @grid: tokenized line.
  * @path_dir: PATH dirs.
@@ -77,18 +64,27 @@ int shell_path(char **grid, char **path_dir)
 {
 	char *full_file;
 	char **new_grid;
-	int i;
+	int i, j;
+	struct stat st;
 
 	/*find the file in the directory*/
 	for (i = 0; path_dir[i]; i++)
 	{
-		full_file = file_match(grid[0], path_dir[i]);
-		if (full_file)
+		full_file = malloc(20 * sizeof(char));
+		_strcpy(full_file, path_dir[i]);
+		_strcat(full_file, "/");
+		_strcat(full_file, grid[0]);
+		if (stat(full_file, &st) == 0)
 		{
 			new_grid = grid_cpy(full_file, grid);
 			path_exe(new_grid);
+			free(full_file);
+			for(j = 0; new_grid[j]; j++)
+				free(new_grid[j]);
+			free(new_grid);
 			return (1);
 		}
+		free(full_file);
 	}
 	return (0);
 }
