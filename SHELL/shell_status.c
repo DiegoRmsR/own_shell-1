@@ -5,14 +5,14 @@
  * @path_dir: grid of dirs in the path
  * Return: status
  */
-int shell_status(char **grid, char **path_dir)
+int shell_status(char **grid)
 {
 	/*Nothing comming*/
 	if (grid[0] == NULL)
 		return (1);
 	/*builtins*/
 	/*PATH commands*/
-	if ((grid[0][0] != '/')&&(shell_path(grid, path_dir)))
+	if ((grid[0][0] != '/')&&(shell_path(grid)))
 	    return (1);
 	/*exe commands or no valid*/
 	return (shell_process(grid));

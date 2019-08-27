@@ -16,7 +16,7 @@ int shell_process(char **grid)
 	}
 	else if (child == 0)
 	{
-		if (execve(grid[0], grid, NULL) == -1)
+		if (execve(grid[0], grid, environ) == -1)
 		{
 			_puts("\ash: No such file or directory\n");
 			exit(0);

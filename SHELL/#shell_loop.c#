@@ -6,17 +6,20 @@
  */
 void shell_loop(char **env)
 {
-	char *line, *delim, **grid;
+	char *line, *delim, *path_con, **grid, **path_dir;
 	int status, i;
-	(void)env;
+
 	/*get the path content*/
+	path_con = _getenv(env, "PATH");
 	/*token. PATH*/
+	delim = ":";::
+	path_dir = shell_token(path_con, delim);
 	delim = " \t\r\a\n";
 	do {
 		_puts("$ ");
 		line = shell_read();
 		grid = shell_token(line, delim);
-		status = shell_status(grid);
+		status = shell_status(grid, path_dir);
 		free(line);
 		i = 0;
 		while(grid[i])
@@ -35,4 +38,6 @@ void shell_loop(char **env)
 		i++;
 	}
 	free(grid);
+	free(path_dir);
+	free(path_con);
 }

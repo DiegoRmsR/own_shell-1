@@ -58,9 +58,10 @@ char *var_con(char *var)
  * @name: var. name
  * Return: the content or NULL
  */
-char *_getenv(char **env, const char *name)
+char *_getenv(const char *name)
 {
 	char *v_name;
+	char **env = environ;
 	int i;
 
 	for (i = 0; env[i]; i++)
@@ -74,4 +75,29 @@ char *_getenv(char **env, const char *name)
 		free(v_name);
 	}
 	return (NULL);
+}
+
+int main(void)
+{
+	char *line, *line2, *line3;
+	char **tok, **tok2;
+	int i = 0;
+
+	line = _getenv("PATH");
+	printf("%s\n", line);
+	line2 = _getenv("PATH");
+	printf("%s\n", line2);
+	line3 = _getenv("PATH");
+	printf("%s\n", line3);
+	
+	tok = shell_token(line, ":");
+	tok2 = shell_token(line, ":");
+	while(tok[i])
+	{
+		printf(" tok1%s\n", tok[i]);
+		printf(" tok2%s\n", tok2[i]);
+		i++;
+	}
+
+	return (0);
 }

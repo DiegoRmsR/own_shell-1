@@ -9,13 +9,15 @@ char **grid_cpy(char *full_file, char **grid)
 {
 	int i;
 	char **filters;
+	int bfsz = BUF_SZ;
 
-	filters = malloc(BUF_SZ * sizeof(char *));
+	filters = malloc(bfsz * sizeof(char *));
 	filters[0] = full_file;
 	for (i = 1; grid[i]; i++)
 	{
 		filters[i] = grid[i];
 	}
+	filters[i + 1] = '\0';
 	return (filters);
 }
 /**
@@ -35,7 +37,7 @@ int path_exe(char **new_grid)
 	}
 	else if (child == 0)
 	{
-		if (execve(new_grid[0], new_grid, NULL) == -1)
+		if (execve(new_grid[0], new_grid, environ) == -1)
 		{
 			_puts("\ash: ERROR\n");
 			exit(0);
@@ -60,6 +62,11 @@ char *file_match(char *file, char *dir)
 	int bfsz = BUF_SZ;
 
 	tmp = malloc(bfsz * sizeof(char));
+	if (!tmp)
+	{
+		_puts("alloc. error");
+		exit(EXIT_FAILURE);
+	}
 	_strcpy(tmp, dir);
 	_strcat(tmp, "/");
 	_strcat(tmp, file);
@@ -73,11 +80,15 @@ char *file_match(char *file, char *dir)
  * @path_dir: PATH dirs.
  * Return: 1 success or 0 if not
  */
-int shell_path(char **grid, char **path_dir)
+int shell_path(char **grid)
 {
 	char *full_file;
 	char **new_grid;
-	int i;
+	int i, j, l;
+	char *path_con = NULL;
+	char **path_dir = NULL;
+	path_con = _getenv("PATH");
+	path_dir = shell_token(path_con, ":");
 
 	/*find the file in the directory*/
 	for (i = 0; path_dir[i]; i++)
@@ -86,9 +97,20 @@ int shell_path(char **grid, char **path_dir)
 		if (full_file)
 		{
 			new_grid = grid_cpy(full_file, grid);
-			path_exe(new_grid);
-			return (1);
+			j = path_exe(new_grid);
+			l = 0;
+			while(new_grid[l])
+			{
+				if (!new_grid[l])
+					free(new_grid[l]);
+				l++;
+			}
+			free(new_grid);
+			free(full_file);
+			return (j);
 		}
+		if (!full_file)
+			free(full_file);
 	}
 	return (0);
 }

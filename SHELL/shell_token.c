@@ -10,6 +10,7 @@ char **shell_token(char *line, char *delim)
 	int bfsz = BUF_SZ, obfsz = 0;
 	int pos = 0;
 	char **grid;
+	char *tok;
 
 	grid = malloc(bfsz * sizeof(char *));
 
@@ -18,13 +19,17 @@ char **shell_token(char *line, char *delim)
 		_puts("alloc. error");
 		exit(EXIT_FAILURE);
 	}
-	grid[pos] = strtok(line, delim);
-	pos++;
+	tok = strtok(line, delim);
 	while (1)
 	{
-		grid[pos] = strtok(NULL, delim);
-		if (grid[pos] == NULL)
-			return (grid);
+		if (tok == NULL)
+		{
+			grid[pos] = NULL;
+			break;
+
+		}
+		grid[pos] = tok;
+		pos++;
 		if (pos >= bfsz)
 		{
 			obfsz = bfsz;
@@ -36,6 +41,8 @@ char **shell_token(char *line, char *delim)
 				exit(EXIT_FAILURE);
 			}
 		}
-		pos++;
+		tok = strtok(NULL, delim);
+		
 	}
+	return (grid);
 }
