@@ -12,8 +12,8 @@ char *var_name(char *var)
 	v_name = malloc(1024);
 	if (!v_name)
 	{
-		printf("Alloc. error");
-		exit(1);
+		perror("lsh: ");
+		exit(EXIT_FAILURE);
 	}
 	for (i = 0; var[i] != '='; i++)
 		v_name[i] = var[i];

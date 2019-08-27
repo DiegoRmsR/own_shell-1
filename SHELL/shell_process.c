@@ -12,14 +12,14 @@ int shell_process(char **grid)
 	child = fork();
 	if (child == -1)
 	{
-		_puts("Fork error\n");
+		perror("lsh");
 	}
 	else if (child == 0)
 	{
 		if (execve(grid[0], grid, NULL) == -1)
 		{
-			_puts("\ash: No such file or directory\n");
-			exit(0);
+			perror("lsh");
+			exit(EXIT_FAILURE);
 		}
 	}
 	else

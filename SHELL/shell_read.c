@@ -4,18 +4,19 @@
  *
  * Return: the line
  */
-char *shell_read(void)
+char *shell_read(char **path_dir)
 {
 	char *line = NULL;
 	size_t sz = 0;
-	int flag;
+	int flag, i;
 
 	flag = getline(&line, &sz, stdin);
 	if (flag == -1)
 	{
 		free(line);
-		exit(1);
+		free(path_dir);
+		exit(EXIT_FAILURE);
 	}
-	line[flag] = '\0';
+	line[flag - 1] = '\0';
 	return (line);
 }

@@ -15,7 +15,7 @@ char **shell_token(char *line, char *delim)
 
 	if (!grid)
 	{
-		_puts("lsh: allocation error");
+		perror("lsh: ");
 		exit(EXIT_FAILURE);
 	}
 	grid[pos] = strtok(line, delim);
@@ -24,7 +24,10 @@ char **shell_token(char *line, char *delim)
 	{
 		grid[pos] = strtok(NULL, delim);
 		if (grid[pos] == NULL)
+		{
+			grid[pos + 1] = NULL;
 			return (grid);
+		}
 		if (pos >= bfsz)
 		{
 			obfsz = bfsz;
@@ -32,7 +35,7 @@ char **shell_token(char *line, char *delim)
 			grid = _realloc(grid, obfsz, bfsz);
 			if (!grid)
 			{
-				_puts("alloc. error");
+				perror("lsh: ");
 				exit(EXIT_FAILURE);
 			}
 		}

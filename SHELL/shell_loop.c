@@ -17,10 +17,11 @@ void shell_loop(char **env)
 	delim = " \t\r\a\n";
 	do {
 		_puts("$ ");
-		line = shell_read();
+		line = shell_read(path_dir);
 		grid = shell_token(line, delim);
 		status = shell_status(grid, path_dir);
 		free(line);
 		free(grid);
 	} while (status);
+	free (path_dir);
 }

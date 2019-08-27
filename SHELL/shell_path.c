@@ -79,8 +79,14 @@ int shell_path(char **grid, char **path_dir)
 			new_grid = grid_cpy(full_file, grid);
 			path_exe(new_grid);
 			free(full_file);
-			for(j = 0; new_grid[j]; j++)
-				free(new_grid[j]);
+			j = 0;
+			while(new_grid[j])
+			{
+				if(new_grid[j])
+					free(new_grid[j]);
+				j++;
+			}
+			free(new_grid[j]);
 			free(new_grid);
 			return (1);
 		}

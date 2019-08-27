@@ -17,7 +17,7 @@ void _puts(char *str);
 int _putchar(char c);
 void puts_grid(char **grid);
 void shell_loop(char **env);
-char *shell_read(void);
+char *shell_read(char **path_read);
 char **shell_token(char *line, char *delim);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void _puts_grid(char **grid);
